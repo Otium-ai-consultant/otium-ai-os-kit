@@ -1,0 +1,56 @@
+{
+  "_comment": "Field definitions + tiers for house-style. The live data lives in ~/.claude-os/brand.json under profiles[active_profile]. Tier A = blocking (no document without it), B = warning (runs but flags a gap), C = on-demand (asked only when a format needs it).",
+  "store_path": "~/.claude-os/brand.json",
+  "status_levels": ["empty", "partial", "ready", "complete"],
+  "ready_requires": "all Tier A fields present",
+  "complete_requires": "all Tier A and Tier B fields present",
+  "fields": {
+    "display_name": { "tier": "A", "type": "string", "label": "Nama tampilan brand", "batch": "identity" },
+    "legal_name": { "tier": "A", "type": "string", "label": "Nama legal (PT/CV/usaha)", "batch": "identity" },
+    "tagline": { "tier": "B", "type": "string", "label": "Tagline", "batch": "identity" },
+    "email": { "tier": "A", "type": "string", "label": "Email", "batch": "contact" },
+    "phone": { "tier": "A", "type": "string", "label": "Telepon", "batch": "contact" },
+    "whatsapp": { "tier": "A", "type": "string", "label": "WhatsApp", "batch": "contact" },
+    "web": { "tier": "A", "type": "string", "label": "Website", "batch": "contact" },
+    "instagram": { "tier": "C", "type": "string", "label": "Instagram handle", "needed_for": ["deck", "proposal"] },
+    "address": {
+      "tier": "A", "type": "object", "label": "Alamat", "batch": "contact",
+      "fields": { "line1": "string", "city": "string", "postal": "string" }
+    },
+    "npwp": { "tier": "C", "type": "string", "label": "NPWP", "needed_for": ["invoice"] },
+    "bank": {
+      "tier": "C", "type": "object", "label": "Rekening bank", "needed_for": ["invoice"],
+      "fields": { "name": "string", "account": "string", "holder": "string" }
+    },
+    "signatory": {
+      "tier": "C", "type": "object", "label": "Penandatangan", "needed_for": ["letter"],
+      "fields": { "name": "string", "title": "string" }
+    },
+    "colors": {
+      "tier": "B", "type": "object", "label": "Warna brand", "batch": "visual",
+      "fields": { "ink": "hex", "accent": "hex" }
+    },
+    "fonts": {
+      "tier": "B", "type": "object", "label": "Font", "batch": "visual",
+      "fields": { "heading": "string", "body": "string" }
+    },
+    "assets": {
+      "tier": "mixed", "type": "object", "label": "Logo", "batch": "visual",
+      "fields": {
+        "logo_full": { "tier": "A", "note": "transparent, ≥2x res" },
+        "logo_mark": { "tier": "B", "note": "icon only, for footers" },
+        "logo_white": { "tier": "B", "note": "light variant for dark backgrounds" }
+      }
+    },
+    "clear_space": { "tier": "B", "type": "string", "label": "Clear space minimum", "default_rule": "height of the 'i' in the wordmark" },
+    "prefs": {
+      "tier": "B", "type": "object", "label": "Preferensi format", "batch": "format",
+      "fields": {
+        "paper": { "options": ["A4", "Letter"], "default": "A4" },
+        "language": { "options": ["id", "en"], "default": "id" },
+        "footer_style": { "options": ["one-line", "three-line-block"], "default": "one-line", "note": "pick ONE, never both" }
+      }
+    }
+  },
+  "onboarding_batches": ["identity", "contact", "visual", "format"]
+}

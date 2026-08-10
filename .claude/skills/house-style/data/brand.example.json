@@ -1,0 +1,25 @@
+{
+  "active_profile": "my-brand",
+  "profiles": {
+    "my-brand": {
+      "display_name": "",
+      "legal_name": "",
+      "tagline": "",
+      "email": "",
+      "phone": "",
+      "whatsapp": "",
+      "web": "",
+      "instagram": "",
+      "address": { "line1": "", "city": "", "postal": "" },
+      "npwp": "",
+      "bank": { "name": "", "account": "", "holder": "" },
+      "signatory": { "name": "", "title": "" },
+      "colors": { "ink": "", "accent": "" },
+      "fonts": { "heading": "", "body": "" },
+      "assets": { "logo_full": "", "logo_mark": "", "logo_white": "" },
+      "prefs": { "paper": "A4", "language": "id", "footer_style": "one-line" },
+      "clear_space": "",
+      "updated_at": ""
+    }
+  }
+}
