@@ -7,7 +7,7 @@ This skill guides creation of distinctive, production-grade frontend interfaces 
 
 The user provides frontend requirements: a component, page, application, or interface to build. They may include context about the purpose, audience, or technical constraints.
 
-> **Pair this with `references/build-with-claude-code.md`** — that guide covers how to start a project, the prompt patterns, and how to deploy (Vercel / Supabase). This skill is the *design* engine; that guide is the *workflow*.
+> **Pair this with `references/build-with-claude-code.md`**: that guide covers how to start a project, the prompt patterns, and how to deploy (Vercel / Supabase). This skill is the *design* engine; that guide is the *workflow*.
 
 ## Design Thinking
 

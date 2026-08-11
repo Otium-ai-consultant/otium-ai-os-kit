@@ -16,7 +16,7 @@ and the public as a free starting point for building a personal AI operating sys
 No warranty. Provided "as is." You are responsible for your own API keys, credentials, and
 the actions your AI takes in your connected accounts.
 
-A few skills build on other people's work — see [`NOTICE.md`](NOTICE.md) for attributions and
+A few skills build on other people's work, see [`NOTICE.md`](NOTICE.md) for attributions and
 their licenses.
 
 > Want this set up for you, or a custom OS for your business? → **Otium AI Consultant.**

@@ -4,17 +4,17 @@ type: playbook
 tags: [onboarding, setup]
 ---
 
-# Build Your Own AI OS — Setup Playbook
+# Build Your Own AI OS, Setup Playbook
 
-> Powered by **Otium AI Consultant** — *"Get Your Time Back."*
+> Powered by **Otium AI Consultant**: *"Get Your Time Back."*
 > This playbook turns Claude Code into your personal **AI Operating System**: a single brain that knows your business, remembers your decisions, lives inside your Obsidian notes, and can act in your Google Workspace.
 
-> **🚀 Fastest path — you barely touch this file.**
+> **🚀 Fastest path, you barely touch this file.**
 > 1. Do the two installs in **`INSTALL-FIRST.md`** (Claude Code + Node.js).
-> 2. Open this folder in Claude Code and type anything — the **`onboard`** skill runs the rest
->    *for* you: it installs its plugins, connects Google in your browser, and sets up Obsidian (native).
+> 2. Open this folder in Claude Code and type anything, the **`onboard`** skill runs the rest
+>    *for* you: it installs its plugins, connects Google in your browser, and asks you to open this folder as an Obsidian vault.
 >
-> This playbook is the manual `onboard` follows — read it for the background, to do a step by
+> This playbook is the manual `onboard` follows, read it for the background, to do a step by
 > hand, or if you get stuck. Almost nothing here needs a terminal.
 
 ---
@@ -26,7 +26,7 @@ Just two, both covered step-by-step in **`INSTALL-FIRST.md`**:
 | Need | What it is | Get it |
 |---|---|---|
 | **Claude Code** | The app your AI runs in (Desktop app = no terminal) | claude.com/download |
-| **Node.js 18+** | Plugins need it (and the optional Obsidian REST API) — installer included | `setup.sh` / `setup.ps1`, or nodejs.org → **LTS** |
+| **Node.js 18+** | Plugins need it (and the optional Obsidian REST API), installer included | `setup.sh` / `setup.ps1`, or nodejs.org → **LTS** |
 
 You'll also want **Obsidian** (obsidian.md) for the graph view, and a **Google account** on a
 Claude plan that includes connectors (e.g. Pro / Max / Team) for the Google step.
@@ -36,10 +36,10 @@ Claude plan that includes connectors (e.g. Pro / Max / Team) for the Google step
 
 ---
 
-## Part A — Install the Claude Code plugins (5 min)
+## Part A: Install the Claude Code plugins (5 min)
 
-**You barely do this — `onboard` runs it for you.** When you open the folder and start, your AI
-installs the plugins using the **`claude plugin` command line** — *not* the interactive `/plugin`
+**You barely do this, `onboard` runs it for you.** When you open the folder and start, your AI
+installs the plugins using the **`claude plugin` command line**: *not* the interactive `/plugin`
 browser, which often isn't ready on a fresh install (the #1 thing that trips people up).
 
 Doing it by hand? Paste these into your **terminal**:
@@ -56,24 +56,19 @@ claude plugin install context-mode@context-mode
 Then **restart Claude Code** and run `claude plugin list` to confirm they're installed.
 
 > Fallback only: the same can be typed as `/plugin marketplace add …` / `/plugin install …@…`
-> slash commands in the chat — but the CLI above is the reliable path.
+> slash commands in the chat, but the CLI above is the reliable path.
 
 **What each one does:**
-- **Superpowers** — a library of disciplined workflows (planning, debugging, review). Better habits, not just answers.
-- **Skill Creator** — package any repeatable workflow of yours into a reusable skill. This is how your OS grows.
-- **claude-mem** — long-term memory. Remembers past sessions, decisions, and work across days/weeks.
-- **context-mode** — context efficiency: big files, web pages, and command output processed in a sandbox (~90% fewer tokens on big reads).
+- **Superpowers**: a library of disciplined workflows (planning, debugging, review). Better habits, not just answers.
+- **Skill Creator**: package any repeatable workflow of yours into a reusable skill. This is how your OS grows.
+- **claude-mem**: long-term memory. Remembers past sessions, decisions, and work across days/weeks.
+- **context-mode**: processes big files, web pages, and long command output off to the side, so they don't crowd out your conversation.
 
-### Bonus power-up (optional)
-```bash
-# Frontend Design — polished, non-AI-looking UI (only if you build web pages/apps)
-claude plugin install frontend-design@claude-plugins-official
-```
-`/review` is **built into** Claude Code (v2.1.86+) — no install. Run it to have your AI hunt bugs in code changes.
+`/code-review` is built into Claude Code, no install needed. Run it to have your AI hunt bugs in code changes. On version 2.1.223 and later, `/review` is an alias for it.
 
 ---
 
-## Part B — Obsidian (2 min — native by default; live REST API optional)
+## Part B: Obsidian (2 min, native by default, live REST API optional)
 
 **Default: nothing to connect.** Your AI reads and writes your notes **directly as files**, so it
 works whether Obsidian is open or closed. You just want Obsidian for the graph view:
@@ -81,14 +76,14 @@ works whether Obsidian is open or closed. You just want Obsidian for the graph v
 1. Open **Obsidian** → **"Open folder as vault"** → choose **this folder**.
 2. Open **Graph view** to watch your notes link up as the OS fills in.
 
-That's it for most people — no plugin, no key, no terminal.
+That's it for most people, no plugin, no key, no terminal.
 
-### Optional power-up — live Local REST API
+### Optional power-up: live Local REST API
 Want the AI to use **live Obsidian features** (Dataview, Obsidian's own search, surgical frontmatter
-edits)? Connect the Local REST API — the trade-off is you must **keep Obsidian open** whenever you use the OS.
+edits)? Connect the Local REST API, the trade-off is you must **keep Obsidian open** whenever you use the OS.
 
 1. In Obsidian: **Settings → Community plugins → Browse →** install + enable **"Local REST API" →** copy its **API Key**.
-2. Paste the key into the chat — your AI runs this for you (or run it yourself; needs Node.js from `INSTALL-FIRST.md`):
+2. Paste the key into the chat, your AI runs this for you (or run it yourself; needs Node.js from `INSTALL-FIRST.md`):
 ```bash
 claude mcp add obsidian -s user \
   -e OBSIDIAN_API_KEY=<YOUR_OBSIDIAN_API_KEY> \
@@ -96,44 +91,44 @@ claude mcp add obsidian -s user \
 ```
 3. Restart Claude Code (Obsidian still open) and ask *"list my Obsidian notes"* to verify.
 
-> If keeping Obsidian always-open is a hassle, just skip this — the native default already does everything the OS needs.
+> If keeping Obsidian always-open is a hassle, just skip this, the native default already does everything the OS needs.
 
 ---
 
-## Part C — Connect Google via Claude's built-in connector (5 min) — all in the browser
+## Part C: Connect Google via Claude's built-in connector (5 min), all in the browser
 
-We use **Claude's own Google connectors** — Gmail, Google Calendar, Google Drive — authorized
+We use **Claude's own Google connectors**: Gmail, Google Calendar, Google Drive, authorized
 in your browser. **No terminal, no Node, no Google Cloud project.**
 
-1. In Claude Code, run **`/mcp`** and connect the **Google** tools (Gmail, Calendar, Drive) —
+1. In Claude Code, run **`/mcp`** and connect the **Google** tools (Gmail, Calendar, Drive), 
    or enable them under your Claude **Connectors** settings.
-2. A browser window opens → **sign in to Google** → **Allow**. Done — remembered after.
+2. A browser window opens → **sign in to Google** → **Allow**. Done, remembered after.
 3. **Verify:** ask your AI *"What's on my Google Calendar this week?"* If it answers, you're connected.
 
 > Needs a Claude plan that includes connectors (e.g. Pro / Max / Team). On a plan without them,
-> skip this for now — the OS still works, and you can connect Google later.
+> skip this for now, the OS still works, and you can connect Google later.
 >
 > ⚠️ If the Google tools don't appear, finish connecting in `/mcp` / Connectors, then retry. Stuck?
-> Book the Otium setup call — we'll finish it with you.
+> Book the Otium setup call, we'll finish it with you.
 
 ---
 
-## Part D — Build your AI OS (run `onboard`) (15 min)
+## Part D: Build your AI OS (run `onboard`) (15 min)
 
-Setup's done. Now the AI builds your operating system **for** you.
+If `onboard` already ran, this is what it did on your behalf, recorded here so you can check its work or repeat a step by hand.
 
 1. In Claude Code (open in this folder), start a **fresh chat**.
-2. Run the onboarding skill — type **`/onboard`** or just say **"onboard me"** (on a fresh OS it
-   starts on its own). It first double-checks setup, then learns about you — **two ways, both
+2. Run the onboarding skill, type **`/onboard`** or just say **"onboard me"** (on a fresh OS it
+   starts on its own). It first double-checks setup, then learns about you, **two ways, both
    optional:** answer a few questions (skip any), or just **drop a file** (company profile, bio,
    deck, past emails) into the chat and it'll read it.
-3. Then ask it: **"What should I focus on this week?"** — that's the moment it clicks.
+3. Then ask it: **"What should I focus on this week?"**: that's the moment it clicks.
 
 ---
 
-## Part E — Verify everything works (5 min)
+## Part E: Verify everything works (5 min)
 
-- [ ] `/plugin` shows **superpowers**, **skill-creator**, **claude-mem**, **context-mode** enabled.
+- [ ] `claude plugin list` in the terminal shows **superpowers**, **skill-creator**, **claude-mem**, and **context-mode** all enabled. (Use the terminal, not the `/plugin` browser: that's the one that often isn't ready on a fresh install.)
 - [ ] Obsidian → **Graph view** → your notes are connected (not scattered dots).
 - [ ] *"What's on my Google Calendar this week?"* → returns events.
 - [ ] After `onboard`: `CLAUDE.md` has your real name/business (no more `{{...}}` placeholders), and `context/` is filled.
@@ -146,9 +141,9 @@ Setup's done. Now the AI builds your operating system **for** you.
 | Problem | Fix |
 |---|---|
 | `/plugin` browser empty / plugins won't install | Use the **`claude plugin`** CLI instead (Part A): `claude plugin install <name>@<marketplace>` from the terminal. Make sure Claude Code is up to date (the native install auto-updates). |
-| Superpowers installed but `/using-superpowers` "doesn't work" | It's **not a command** — Superpowers loads automatically at the start of each session. **Restart Claude Code.** To use it, just describe your task, or run `/brainstorm`, `/write-plan`, `/execute-plan`. Check `claude plugin list` shows it **enabled**. |
+| Superpowers installed but `/using-superpowers` "doesn't work" | It's **not a command**: Superpowers loads automatically at the start of each session. **Restart Claude Code.** To use it, just describe your task, or run `/brainstorm`, `/write-plan`, `/execute-plan`. Check `claude plugin list` shows it **enabled**. |
 | `onboard` skill not available | Confirm you opened Claude Code **in this folder**; the skill is at `.claude/skills/onboard/SKILL.md`. |
-| Plugin / memory / Obsidian errors (`npx` not found) | Make sure **Node.js** is installed — run `setup.sh` / `setup.ps1`, or see `INSTALL-FIRST.md` step 2 — then restart Claude Code. |
+| Plugin / memory / Obsidian errors (`npx` not found) | Make sure **Node.js** is installed, run `setup.sh` / `setup.ps1`, or see `INSTALL-FIRST.md` step 2, then restart Claude Code. |
 | Google tools don't appear | Connect them via **`/mcp`** or Claude **Connectors**, and make sure your Claude plan includes connectors. Then retry the calendar question. |
 | Obsidian REST API power-up returns nothing | Only relevant if you enabled it: make sure **Obsidian is running**, **Local REST API** is enabled, and the **key matches**. Restart Claude Code. (The native default needs none of this.) |
 | AI forgets context next session | Confirm **claude-mem** is enabled and **CLAUDE.md** exists in the folder you opened. |
@@ -164,7 +159,7 @@ task and we'll turn it into a one-command skill inside your OS (built with Skill
 
 ---
 
-## Appendix — Manual bootstrap prompt (fallback if `onboard` won't load)
+## Appendix, Manual bootstrap prompt (fallback if `onboard` won't load)
 
 If the `onboard` skill isn't available, paste this into a fresh chat instead:
 

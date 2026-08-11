@@ -1,6 +1,6 @@
 ---
 name: level-up
-description: Use weekly to find and ship one new automation. Walks the 3Ms interview — Mindset (find the candidate) → Method (scope one) → Machine (build it). Trigger on "let's level up", "what should I automate next", "find me leverage this week", or as a Friday ritual. One run = one shipped artifact.
+description: Use weekly to find and ship one new automation. Walks the 3Ms interview, Mindset (find the candidate) → Method (scope one) → Machine (build it). Trigger on "let's level up", "what should I automate next", "find me leverage this week", or as a Friday ritual. One run = one shipped artifact.
 ---
 
 > *Adapted from The Three Ms of AI™. © 2026 Nate Herk. All rights reserved.*
@@ -8,7 +8,7 @@ description: Use weekly to find and ship one new automation. Walks the 3Ms inter
 
 ## What this skill does
 
-Walks the user through the 3Ms each week to surface and ship one new automation. **One interview = one artifact.** It also installs the 3Ms framework into the user's head over time — after 4-6 runs, the user starts spotting opportunities mid-week without prompting because the questions have become internal defaults.
+Walks the user through the 3Ms each week to surface and ship one new automation. **One interview = one artifact.** It also installs the 3Ms framework into the user's head over time, after 4-6 runs, the user starts spotting opportunities mid-week without prompting because the questions have become internal defaults.
 
 This is the brain-rewire mechanism. The kit doesn't need cron jobs to anchor behavior; it needs `/level-up` running every Friday.
 
@@ -26,17 +26,17 @@ This is the brain-rewire mechanism. The kit doesn't need cron jobs to anchor beh
 
 ## Inputs the skill reads
 
-- `context/priorities.md` — what the user said matters
-- `context/about-me.md` — top pain, role
-- `connections.md` — what's reachable, by what mechanism
-- `references/3ms-framework.md` — the framework (used to quote principles back), if present
-- `decisions/log.md` — recent decisions (what's already shipped or considered)
-- `.claude/skills/*/SKILL.md` frontmatter — what capabilities exist
+- `context/priorities.md`: what the user said matters
+- `context/about-me.md`: top pain, role
+- `connections.md`: what's reachable, by what mechanism
+- `references/3ms-framework.md`: the framework (used to quote principles back), if present
+- `decisions/log.md`: recent decisions (what's already shipped or considered)
+- `.claude/skills/*/SKILL.md` frontmatter, what capabilities exist
 - Recent `audits/audit-{date}.md` if present
 
-## Execution — three phases
+## Execution: three phases
 
-### Phase 1 — Mindset interview (find the candidate)
+### Phase 1: Mindset interview (find the candidate)
 
 Surface 1-3 candidates ranked by leverage. Ask these in order, conversationally:
 
@@ -47,24 +47,24 @@ Surface 1-3 candidates ranked by leverage. Ask these in order, conversationally:
 5. *"What would give you 500 more clients tomorrow?"* (growth lever)
 
 Quote relevant Mindset principles when they fit:
-- *"Sounds like the Default Shift applies — to what extent could AI be leveraged here?"*
-- *"This is the Function Breakdown — you're not automating the whole job, just this one piece."*
+- *"Sounds like the Default Shift applies, to what extent could AI be leveraged here?"*
+- *"This is the Function Breakdown, you're not automating the whole job, just this one piece."*
 - *"AI is better than you think and improving faster than you think. If it couldn't do this last quarter, it might be ready now."*
 
 **Output of Phase 1:** numbered list of 1-3 candidate opportunities, one-line "why this is leverage" per candidate. Ask: *"Pick one to scope."*
 
-### Phase 2 — Method interview (scope one)
+### Phase 2: Method interview (scope one)
 
 User picks one candidate. Walk the 5-step Method pipeline:
 
-**Step 1 — Find the constraint.** Which bottleneck does this solve, or which growth lever does it open? Tie back to Phase 1 answers.
+**Step 1, Find the constraint.** Which bottleneck does this solve, or which growth lever does it open? Tie back to Phase 1 answers.
 
-**Step 2 — EAD: Eliminate / Automate / Delegate.**
+**Step 2, EAD: Eliminate / Automate / Delegate.**
 - **Eliminate first:** *"What happens if we just stop doing this?"* If the answer is "nothing breaks" → skill exits cheerfully. *"Don't automate waste."* This is a win, log to `decisions/log.md` and stop.
 - **Automate second:** apply 60/30/10 framing. ~60% deterministic, ~30% AI-assisted, ~10% manual.
 - **Delegate third:** if too complex/variable/judgment-heavy → suggest a person. Skill exits with a delegation suggestion, log it.
 
-**Step 3 — Map the process.** Five elements:
+**Step 3, Map the process.** Five elements:
 - Trigger (what kicks it off)
 - Data sources (where info comes from)
 - Data transformations (how data changes shape)
@@ -73,7 +73,7 @@ User picks one candidate. Walk the 5-step Method pipeline:
 
 If the user can't articulate any of the five: *"If you can't explain it to a person, you can't explain it to an AI. Sketch it on paper first, then come back."* Skill stops.
 
-**Step 4 — Pick the autonomy level.**
+**Step 4, Pick the autonomy level.**
 
 | Level | Name | What happens |
 |---|---|---|
@@ -85,7 +85,7 @@ If the user can't articulate any of the five: *"If you can't explain it to a per
 
 **Default = lowest level that solves the problem.** Push back on L4 unless the user has explicitly run lower levels first. *"Workflows beat agents. If a decision doesn't HAVE to be made by AI, don't let AI make it."*
 
-**Step 5 — Tie to a KPI.** Which of the Three Buckets does this move?
+**Step 5, Tie to a KPI.** Which of the Three Buckets does this move?
 - More customers
 - More value per customer
 - Less cost
@@ -94,14 +94,14 @@ Plus a specific metric (response time, error rate, conversion rate, time-to-comp
 
 **Output of Phase 2:** scoped automation spec written to `decisions/log.md` as a dated entry with all five answers + autonomy level + KPI. Durable record of what was decided and why.
 
-### Phase 3 — Machine handoff (build it)
+### Phase 3: Machine handoff (build it)
 
 Ask: *"How do you want to ship this?"* Options ordered by Boring-is-Beautiful default:
 
-1. **Prompt-only** — saved prompt template the user runs by hand. Zero infrastructure. Highest manual involvement.
-2. **Deterministic skill** — SKILL.md that runs a script (no AI step). Best for transformations with clear rules.
-3. **AI-assisted skill** — SKILL.md with one AI call inside. Drafts, classifies, summarizes.
-4. **Sub-agent** — multi-step agent. Last resort. Only if the work genuinely needs reasoning + tool use.
+1. **Prompt-only**: saved prompt template the user runs by hand. Zero infrastructure. Highest manual involvement.
+2. **Deterministic skill**: SKILL.md that runs a script (no AI step). Best for transformations with clear rules.
+3. **AI-assisted skill**: SKILL.md with one AI call inside. Drafts, classifies, summarizes.
+4. **Sub-agent**: multi-step agent. Last resort. Only if the work genuinely needs reasoning + tool use.
 
 **Default selected = highest non-AI option that solves the problem.** User has to explicitly choose more autonomy.
 
@@ -113,7 +113,7 @@ Once chosen, route to the appropriate scaffolder:
 
 ```markdown
 ---
-bike-method-phase: 1  # Phase 1 — Training wheels. Run manually first.
+bike-method-phase: 1  # Phase 1, Training wheels. Run manually first.
 three-ms-attribution: |
   Adapted from The Three Ms of AI™ © 2026 Nate Herk.
 ---
@@ -122,23 +122,23 @@ three-ms-attribution: |
 This locks the user into Phase 1 of the Bike Method on first build. They can't silently skip manual validation. Phase advances only by explicit edit.
 
 Surface the Machine principles when scaffolding:
-- **Lego Principle** — smallest steps, zero-AI first if possible
-- **Validation Chain** — test each step before chaining
-- **Iteration Mindset** — ship the POC, expand from real usage
+- **Lego Principle**: smallest steps, zero-AI first if possible
+- **Validation Chain**: test each step before chaining
+- **Iteration Mindset**: ship the POC, expand from real usage
 
 ## Output contract
 
 Every `/level-up` run produces:
 
-1. **One `decisions/log.md` entry** — dated, with the Method spec
-2. **One scaffolded artifact** — prompt, skill, or agent file
-3. **A one-screen close** — what was scoped, what was built, and the Bike Method Phase 1 reminder
+1. **One `decisions/log.md` entry**: dated, with the Method spec
+2. **One scaffolded artifact**: prompt, skill, or agent file
+3. **A one-screen close**: what was scoped, what was built, and the Bike Method Phase 1 reminder
 
 ## Critical implementation rules
 
 1. **One interview = one artifact.** No multi-candidate parallel scoping.
 2. **Mindset phase always runs first.** Even if the user comes in with a pre-formed idea.
-3. **EAD enforces "eliminate first."** If the answer is Eliminate, exit cheerfully — that's a win, not a failure.
+3. **EAD enforces "eliminate first."** If the answer is Eliminate, exit cheerfully, that's a win, not a failure.
 4. **Default to the lowest autonomy level that works.** Push back on L4.
 5. **Boring-is-Beautiful default in Machine handoff.** Default = highest non-AI option.
 6. **Tie-to-KPI is mandatory.** If the user can't name bucket + metric, skill stops.

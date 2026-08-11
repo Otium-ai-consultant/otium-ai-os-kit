@@ -1,3 +1,50 @@
+# ============================================================
+# YOUR PRIVATE DATA — never committed, never pushed.
+#
+# These paths hold things about you, your customers and your money.
+# They are ignored so that "commit this" can never publish them,
+# even if you later put this folder on GitHub.
+#
+# The templates the kit ships (CLAUDE.md, tasks/todo.md,
+# connections.md, OS-INDEX.md, decisions/log.md, aios-intake.md)
+# ARE tracked, because you need to receive them. Once onboarding
+# fills them in they are yours. See "Updating" in README.md before
+# you ever run git pull.
+# ============================================================
+
+# Everything onboarding and daily use writes about you
+context/*
+!context/README.md
+
+# Your knowledge base and its original sources
+wiki/pages/*
+!wiki/pages/README.md
+wiki/raw/*
+!wiki/raw/README.md
+
+# Session memory
+sessions/*
+!sessions/index.md
+
+# Client and project cards
+projects/*
+!projects/README.md
+
+# Discovery captures
+brainstorms/*
+!brainstorms/README.md
+
+# Anything you retired
+archives/*
+!archives/README.md
+
+# The drop zone and its staging folder
+Transition/*
+!Transition/README.md
+!Transition/RAW/
+Transition/RAW/*
+!Transition/RAW/README.md
+
 # OS / editor junk
 .DS_Store
 *.log
@@ -18,10 +65,12 @@ $RECYCLE.BIN/
 *.sqlite
 *.db
 
+# Knowledge graph output (regenerated locally)
+graphify-out/
+
 # Secrets — never commit
 .env
 .env.*
 *client_secret*.json
-
-# Knowledge graph output (regenerated locally)
-graphify-out/
+*.pem
+*.key

@@ -14,11 +14,8 @@ any deadline within 3 days, before doing anything else.
 
 ## Active
 
-- [ ] **SETUP-01** Run `/onboard` — it connects your tools first (plugins + Obsidian), then sets up your OS
-  - Deadline: —
-  - Reminders: —
-
-## Completed
+- [ ] **SETUP-01** Run `onboard`. It installs the plugins and connects Google first, then learns about your business.
+  - Deadline: - Reminders: ## Completed
 
 *(move finished tasks here)*
 

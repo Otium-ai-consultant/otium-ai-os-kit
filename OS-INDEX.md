@@ -4,44 +4,50 @@ type: hub
 tags: [index]
 ---
 
-# OS-INDEX — the map of this AI OS
+# OS-INDEX: the map of this AI OS
 
 The hub of your Obsidian knowledge graph. Every core note links here so the graph stays
-connected. `onboard` and your AI keep this current — add a `[[wikilink]]` whenever you
-create a note that should be findable.
+connected. The `os-map` skill regenerates this file. Ask for it any time you want the map
+refreshed.
+
+**Link rule:** only link notes that actually exist. Notes created later are listed as plain
+text until they do, because a link to a missing file shows up in Obsidian as a dead node.
 
 ## Operating manual
-- [[CLAUDE]] — the rules your AI follows every session
-- [[README]] — start-here guide
-- [[SETUP-PLAYBOOK]] — install: plugins + Obsidian + Google Workspace
-- [[connections]] — systems this OS can reach
+- [[CLAUDE]]: the rules your AI follows every session
+- [[README]]: start here
+- [[COMMANDS]]: what to say to get things done
+- [[SETUP-PLAYBOOK]]: install: plugins, Obsidian, Google Workspace
+- [[EXPANSIONS]]: what to add as you grow, and what never to add
+- [[connections]]: systems this OS can reach
 
-## Context (who I am / the business)
-- [[about-me]]
-- [[about-business]]
-- [[priorities]]
-- *(team, etc. — add as they're created)*
-
-## References
-- [[voice]] — how I write / want the OS to sound
-- [[build-with-claude-code]] — plain-English guide to building & deploying apps here
+## Context (who you are: and the business)
+*Created by `onboard`: about-me, about-business, priorities. They appear here once they exist.*
 
 ## Knowledge base
-- [[SCHEMA]] — the rules the wiki follows
-- [[index]] — the wiki catalog
-- [[log]] — the wiki timeline
+- [[SCHEMA]]: the rules the wiki follows
+- [[wiki/index]]: the wiki catalog
+- [[wiki/log]]: the wiki timeline
 
-## Skills
-- `onboard` · `audit` · `level-up` · `session-handoff` — setup & weekly rhythm
-- `capture` · `wiki` · `raw-ingest` · `os-map` · `grill-me` — capture & knowledge
-- `copywriter` · `humanizer` · `house-style` — writing & brand
-- `gcal-manager` · `frontend-design` — calendar & app-building
+## Session memory
+- [[sessions/index]]: the handoff catalog, read this before starting work on a known topic
 
 ## Working files
-- [[todo]] — task list
-- [[log]] — decisions log
-- *(brainstorms/, projects/, templates/ — fill as you go)*
+- [[todo]]: the task list
+- [[decisions/log]]: decisions and why
+- [[aios-intake]]: the onboarding worksheet
+
+## References
+- [[build-with-claude-code]]: plain-English guide to building and deploying apps here
+*`voice.md` is written by `onboard` from your writing samples.*
+
+## Skills
+
+Your installed skills are the list. Ask *"what can you do?"* and your AI reads them from
+`.claude/skills/` and tells you. No copy is kept here, because a copy goes stale the moment you
+add a skill.
 
 ## Connected
 - [[CLAUDE]]
 - [[connections]]
+- [[EXPANSIONS]]

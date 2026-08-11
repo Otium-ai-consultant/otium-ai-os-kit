@@ -1,4 +1,4 @@
-# wiki/raw — original sources, never edited
+# wiki/raw, original sources, never edited
 
 Every source your AI ingests lands here first, unchanged: the PDF, the article, the exported
 chat, the photo of a whiteboard. Named `YYYY-MM-DD-slug.ext`.

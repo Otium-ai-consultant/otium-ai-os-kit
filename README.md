@@ -1,66 +1,82 @@
-# Your AI Operating System — Start Here
+# Your AI Operating System
 
-> Delivered by **Otium AI Consultant** — *"Get Your Time Back."*
+> Delivered by **Otium AI Consultant**. *"Get Your Time Back."*
 
-This folder becomes **your business's AI brain**. Open it in Claude Code and it will know who
-you are, remember your decisions, live inside your Obsidian notes, and act in your Google
-Workspace.
+This folder becomes a working brain for your business. Open it in Claude Code and it learns who
+you are from a short setup, keeps your tasks and decisions in one place, doubles as an Obsidian
+vault you can browse, and connects to Gmail, Calendar, and Drive.
 
-## How to use this kit
+No dashboard, no database, no build step. Everything here is a plain text file on your own
+computer.
 
-1. **Do the two installs in [`INSTALL-FIRST.md`](INSTALL-FIRST.md)** — Claude Code + Node.js
-   (~10 min, the only by-hand part). **Works on Windows and macOS** — the installer auto-detects
-   (`setup.ps1` on Windows, `setup.sh` on Mac/Linux). Then open **this folder** in Claude Code.
-2. **Type anything — even "hi".** On a fresh OS the **`onboard`** skill takes over and does setup
-   *for* you, in order: installs its plugins, connects Google in your
-   browser (a couple of quick restarts; just keep going). Then it learns about you — **two ways,
-   both optional:** answer a few quick questions (skip any), or just **drop a file** (company
-   profile, bio, deck, past emails) into the chat and it'll read it.
-3. Ask it: **"What should I focus on this week?"** — that's the moment it clicks.
+## What you need first
 
-> Why this order? So the OS is fully connected *before* it starts learning about you — the
-> experience is fluent from minute one instead of fragmented. **Heads up:** on your first
-> session the OS runs this setup automatically before doing anything else — even if you just
-> say "hi" — and it won't skip steps. `SETUP-PLAYBOOK.md` is the
-> detailed manual `onboard` follows; open it only if you want the background or get stuck.
+**A paid Claude plan.** Claude Code needs Pro, Max, Team, or Enterprise. A free account cannot
+run it, and the Google connections need a paid plan too. Details in
+[`INSTALL-FIRST.md`](INSTALL-FIRST.md).
 
-## What's already inside
+## How to start
 
-| File / folder | What it is |
+1. **Do the installs in [`INSTALL-FIRST.md`](INSTALL-FIRST.md).** Claude Code, then Node.js, plus
+   Git for Windows if you are on Windows. About ten minutes, and it is the only by-hand part.
+2. **Open this folder in Claude Code and type anything, even "hi".** On a fresh OS the `onboard`
+   skill takes over and does the setup for you: it installs the plugins, walks you through
+   connecting Google, and asks you to open the folder in Obsidian. Then it learns about you,
+   either by asking a few questions you are free to skip, or by reading a file you drop into the
+   chat such as a company profile or an old proposal.
+3. **Ask it: "what should I focus on this week?"** That is the moment it clicks.
+
+> On your first session the OS runs setup before anything else, even if you only said hi. That is
+> deliberate: a half-connected OS that starts interviewing you feels broken.
+> [`SETUP-PLAYBOOK.md`](SETUP-PLAYBOOK.md) is the manual it follows. Open it only if you are
+> curious or something gets stuck.
+
+## What is in here
+
+| File or folder | What it is |
 |---|---|
-| `INSTALL-FIRST.md` | The only by-hand part: install Claude Code + Node.js. Start here. |
-| `CLAUDE.md` | The operating manual — the rules your AI follows every session. |
-| `SETUP-PLAYBOOK.md` | The manual `onboard` follows: plugins, Google connector, Obsidian (native + optional REST API). |
-| `aios-intake.md` | The 7 questions `onboard` asks (you can pre-fill it if you like). |
-| `connections.md` | A registry of every system your OS can reach. |
-| `.claude/skills/` | Fourteen ready skills (see the list below) — setup, capture, knowledge, writing, calendar, and app-building. |
-| `wiki/` | Your long-term knowledge base. Empty on purpose — it fills as you feed it. |
-| `context/` `references/` `decisions/` `projects/` `tasks/` … | The folders your OS fills as it learns. |
+| [`INSTALL-FIRST.md`](INSTALL-FIRST.md) | The by-hand part. Start here. |
+| [`COMMANDS.md`](COMMANDS.md) | What to say to get things done. Read this after setup. |
+| [`CLAUDE.md`](CLAUDE.md) | The operating manual: the rules your AI follows every session. |
+| [`SETUP-PLAYBOOK.md`](SETUP-PLAYBOOK.md) | The setup manual `onboard` follows. |
+| [`EXPANSIONS.md`](EXPANSIONS.md) | What to add as you grow, and what never to add. |
+| `aios-intake.md` | The onboarding questions. Fill it in beforehand if you like, and setup will read it instead of asking. |
+| `.claude/skills/` | Your skills. Ask *"what can you do?"* and your AI reads them out. |
+| `context/` `tasks/` `projects/` `decisions/` `sessions/` | What the OS knows and remembers. |
+| `wiki/` | Your knowledge base. Empty on purpose. It fills as you feed it. |
 
-## The skills you get on day one
+**There is deliberately no list of skills in this file.** Any list goes stale the moment you add
+one, and this OS is built to grow. The installed skills are the list. Ask your AI what it can do
+and it will tell you from what is actually there.
 
-**Setup & rhythm**
-- **`onboard`** — sets up your whole OS: connects your tools first, then learns about you (answer a few questions or drop a file — both optional). Run this first.
-- **`audit`** — scores your setup against the Four Cs and hands you the top-3 fixes. Run it weekly to watch the score climb.
-- **`level-up`** — a weekly interview that finds one thing worth automating and ships it.
-- **`session-handoff`** — a clean end-of-session summary so you can start fresh tomorrow without losing the thread.
+## Where your information goes
 
-**Capture & knowledge**
-- **`capture`** — drop a thought, fact, file, or link and it files it in the right place automatically.
-- **`wiki`** — your second brain. Feed it sources, then ask it questions and get answers with citations. Grows into a graph you can see in Obsidian.
-- **`raw-ingest`** — turn long articles / web clips into clean, sourced knowledge notes.
-- **`os-map`** — the librarian: keeps your index current and flags anything stale or misfiled.
-- **`grill-me`** — get relentlessly interviewed about any plan or idea; it saves everything to a doc so nothing is lost.
+Everything the OS learns is a text file in this folder, on your machine. There is no Otium
+account and no server holding your business.
 
-**Writing**
-- **`copywriter`** — writes captions, emails, WhatsApp messages, and sales copy in *your* voice, not a model's. No em dashes, no emoji. Works in Indonesian and English.
-- **`humanizer`** — run any text through it to strip the tells that make writing read as AI-generated.
-- **`house-style`** — your brand in one file: name, contacts, logo, colors, fonts. Set it once and every proposal, invoice, and deck comes out consistent. Ships blank; you fill your own.
+The folders that hold your private information, which is `context/`, `tasks/`, `wiki/`,
+`sessions/`, `projects/`, `decisions/`, and `brainstorms/`, are **excluded from git on purpose**.
+If you ever put this folder on GitHub, your customer names, tax details, and bank information do
+not go with it.
 
-**Doing the work**
-- **`gcal-manager`** — notices dated events in your chat and puts them on your Google Calendar, cleanly.
-- **`frontend-design`** — builds real, distinctive web pages, dashboards, and small apps. Paired with **`references/build-with-claude-code.md`**, a plain-English guide to building and deploying apps here even if you don't code.
+What does leave your computer is what you type into Claude, the same as any other conversation
+with it. If something must never reach a third party, do not paste it into the chat.
 
-> Build more skills any time with **Skill Creator** — that's how this OS grows.
+## Updating later
 
-> Stuck on any step? The two installs in `INSTALL-FIRST.md` are the only technical bit — reply to Otium and we'll do them with you on a quick screen-share.
+Your data and this kit are kept separate so an update can never overwrite your business.
+
+Say **"update my AI OS from the Otium repo"**. Your AI fetches the current version and replaces
+only `.claude/skills/` and the guide files. Everything in `context/`, `tasks/`, `wiki/`,
+`sessions/`, `projects/`, and `decisions/` is left alone.
+
+Avoid running `git pull` by hand unless you are comfortable with git. The sentence above is safer
+because it is explicit about what gets replaced.
+
+## Something broken?
+
+Say **"doctor"**. It diagnoses the problem one step at a time and never deletes anything. If it
+cannot fix it, it writes a message you can send to us.
+
+The two installs in `INSTALL-FIRST.md` are the only technical part. Stuck there? Reply to Otium
+and we will do them with you on a quick screen share.

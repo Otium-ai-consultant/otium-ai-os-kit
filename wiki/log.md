@@ -4,7 +4,7 @@ type: log
 tags: [wiki, log]
 ---
 
-# Wiki — timeline
+# Wiki: timeline
 
 Append-only. Every ingest, query, and lint gets an entry, newest at the bottom. This is how you
 see what the wiki learned and when.

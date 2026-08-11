@@ -1,13 +1,20 @@
 ---
 name: raw-ingest
-description: Use when you want raw web-clipped or long-form material turned into knowledge — or say "ingest RAW", "raw ingest", "process this clip", "ingest knowledge", or when files appear in Transition/RAW/. Reads each raw clip (Obsidian Web Clipper output or pasted long-form), distills the signal (never dumps), routes the distilled note to its right knowledge home (references/ai-knowledge/, references/{topic}.md, or context/), keeps source provenance, wikilinks + tags it into the Obsidian graph, archives the raw original, and leaves Transition/RAW/ empty.
+description: >-
+  Use when you want raw web-clipped or long-form material turned into knowledge, or say
+  "process this clip", "ingest RAW", "raw ingest", "olah clip", "proses artikel ini", or when
+  files appear in Transition/RAW/. Reads each raw clip (Obsidian Web Clipper output or pasted
+  long-form), distills the signal and never dumps, files the distilled note into wiki/pages/,
+  keeps the source URL so provenance is never lost, wikilinks and tags it into the Obsidian
+  graph, moves the raw original into wiki/raw/, and leaves Transition/RAW/ empty. This is the
+  bulk-clip path into the knowledge base; the wiki skill handles everything else about wiki/.
 ---
 
 ## What this skill does
 
 The **knowledge-bank ingester** for long-form raw material. `Transition/RAW/` is the staging zone the **Obsidian Web Clipper** writes into (and where you can paste long `.md` source). This skill reads each raw clip, **distills it into signal**, files a clean interpreted note into the right knowledge home, keeps the **source URL** so provenance is never lost, links it into the Obsidian graph, archives the raw original, and empties `Transition/RAW/`.
 
-The goal is **consistent ingest.** Every clip comes out as the same shape of note — same frontmatter, same sections, same provenance line, same graph links — so the knowledge bank stays uniform no matter what gets clipped.
+The goal is **consistent ingest.** Every clip comes out as the same shape of note, same frontmatter, same sections, same provenance line, same graph links, so the knowledge bank stays uniform no matter what gets clipped.
 
 ## Boundary vs `/capture`
 
@@ -18,7 +25,7 @@ If a RAW item is actually a short fact / a person / a decision / a project → h
 
 ## Today's context
 
-- **Date:** today's date (already in your session context — no shell call needed; works on any OS)
+- **Date:** today's date (already in your session context, no shell call needed; works on any OS)
 - **Source folder:** `Transition/RAW/`
 - **OS root:** the current working directory
 
@@ -28,7 +35,7 @@ Web clips are long (full HTML→Markdown). **Do not read whole clips into the co
 - `ctx_execute_file(path, language, code)` to parse a clip's frontmatter + extract the meaningful body.
 - `ctx_batch_execute` to scan all clips at once (titles, sources, lengths) before triage.
 
-Only the distilled bullets should ever enter your context — never the raw clip body.
+Only the distilled bullets should ever enter your context, never the raw clip body.
 
 ## The ingest routing map
 
@@ -36,18 +43,18 @@ Decide the distilled note's home by **what the clip is about**, not by keyword:
 
 | Clip is about… | Distilled note → | Tag |
 |---|---|---|
-| AI tools / models / techniques / prompts | `references/ai-knowledge/{slug}.md` | `ai-knowledge` |
-| How a specific tool / API / MCP works | `references/{tool}-api.md` (merge if it exists) | `reference` |
-| A business / marketing / creative framework or method | `references/{topic}.md` | `business` / `creative` |
-| A fact about you / the business / a person / a decision | hand to **`/capture`** (→ `context/*` or `decisions/log.md`) | — |
-| Pure timely news, no lasting value | discard (or hand to a news pipeline if you run one) | — |
-| Junk / mis-clip / paywalled stub / duplicate | **DISCARD** — archive raw only, write nothing to KB | — |
+| AI tools / models / techniques / prompts | `wiki/pages/{slug}.md` | `knowledge` |
+| How a specific tool / API / MCP works | `wiki/pages/{tool}-api.md` (merge if it exists) | `reference` |
+| A business / marketing / creative framework or method | `wiki/pages/{topic}.md` | `business` / `creative` |
+| A fact about you / the business / a person / a decision | hand to **`/capture`** (→ `context/*` or `decisions/log.md`) |, |
+| Pure timely news, no lasting value | discard (or hand to a news pipeline if you run one) |, |
+| Junk / mis-clip / paywalled stub / duplicate | **DISCARD**: archive raw only, write nothing to KB |, |
 
-**Area tag** (always add one): a simple top-level area you use consistently — e.g. `area/work` · `area/personal`. Pick the taxonomy that fits your business and keep it stable.
+**Area tag** (always add one): a simple top-level area you use consistently, e.g. `area/work` · `area/personal`. Pick the taxonomy that fits your business and keep it stable.
 
-When a clip genuinely fits two homes, file it in the **primary** home and cross-reference the other with a `[[wikilink]]` — never duplicate the content.
+When a clip genuinely fits two homes, file it in the **primary** home and cross-reference the other with a `[[wikilink]]`: never duplicate the content.
 
-## The distilled note template (use this every time — consistency is the point)
+## The distilled note template (use this every time, consistency is the point)
 
 ```
 ---
@@ -63,13 +70,13 @@ status: {to-read | worth-trying | reference | archived}
 > Source: [{domain}]({url}) · clipped {clipped} · ingested {today}
 
 ## Core
-- {3–6 bullets that distill the actual signal — what's true / new / useful}
+- {3-6 bullets that distill the actual signal, what's true / new / useful}
 
 ## Relevance
-- {1–3 bullets: why this matters — for client work, content, ops, training}
+- {1-3 bullets: why this matters, for client work, content, ops, training}
 
 ## Key details
-- {data, quotes, steps worth keeping — only real signal, skip filler}
+- {data, quotes, steps worth keeping, only real signal, skip filler}
 
 ## Connected
 [[related-note]] · [[another]]
@@ -79,46 +86,47 @@ Drop a section only if it would be empty. Keep bullets terse and in the OS voice
 
 ## Execution
 
-### Mode A — Ingest the whole RAW folder (default)
+### Mode A: Ingest the whole RAW folder (default)
 
-1. **List** every clip in `Transition/RAW/`, **ignoring** `.gitkeep`, `_README.md`, and OS junk (`.DS_Store`, `Thumbs.db`, `desktop.ini`).
+1. **List** every clip in `Transition/RAW/`, **ignoring** `.gitkeep`, `README.md`, and OS junk (`.DS_Store`, `Thumbs.db`, `desktop.ini`).
    - If empty → tell the user "Transition/RAW is empty, nothing to ingest" and stop.
 2. **Scan + distill** each clip with context-mode tools: pull title, `source` URL, clipped date, and the meaningful body. Classify via the routing map.
-3. **Dedup check.** Before creating a note, search `references/ai-knowledge/` (and the rest of `references/`) for an existing note on the same topic. If one exists → plan to **merge** the new signal in (update `updated:`, keep both sources) rather than create a duplicate.
+3. **Dedup check.** Before creating a note, read `wiki/index.md` and search `wiki/pages/` for an existing note on the same topic. If one exists, plan to **merge** the new signal in (update `updated:`, keep both sources) rather than create a duplicate.
 4. **Present the ingest plan** (one line per clip) and let the user confirm/adjust before writing:
    ```
    RAW ingest plan ({n} clips):
-   1. {title} → references/ai-knowledge/{slug}.md (NEW) — {1-line signal}
-   2. {title} → merge into [[existing-note]] — {what's new}
+   1. {title} → wiki/pages/{slug}.md (NEW), {1-line signal}
+   2. {title} → merge into [[existing-note]]: {what's new}
    3. {title} → DISCARD (news, no lasting value)
    ...
    ```
-   - If a clip is clearly junk/dup, propose DISCARD — don't ask permission to skip noise, just show it.
+   - If a clip is clearly junk/dup, propose DISCARD, don't ask permission to skip noise, just show it.
    - If routing is genuinely ambiguous between two KB homes, ask one short question.
-5. **On confirm, write** each kept clip as a distilled note using the template — interpreted, not dumped. Always keep the `source:` URL. Add `[[wikilinks]]` + `tags:` (graph rule — never orphan a note). Merge where the plan said merge.
-6. **Archive the raw originals.** `mv` every processed clip (kept *and* discarded) to `archives/raw-ingest/{today}/`. Never `rm` — provenance is preserved even for discards.
-7. **Verify `Transition/RAW/` is empty** (only `.gitkeep` + `_README.md` remain).
+5. **On confirm, write** each kept clip as a distilled note using the template, interpreted, not dumped. Always keep the `source:` URL. Add `[[wikilinks]]` + `tags:` (graph rule, never orphan a note). Merge where the plan said merge.
+6. **Archive the raw originals.** `mv` every processed clip (kept *and* discarded) to `wiki/raw/`. Never `rm`: provenance is preserved even for discards.
+7. **Verify `Transition/RAW/` is empty** (only `README.md` remains).
 8. **Report:**
    ```
    Ingested {n} clips:
    - {title} → {path} ({NEW|merged}) · linked [[...]]
-   - {title} → DISCARD → archives/raw-ingest/{today}/
-   Transition/RAW empty. Raw archived → archives/raw-ingest/{today}/
+   - {title} → DISCARD → wiki/raw/
+   Transition/RAW empty. Raw archived → wiki/raw/
    ```
-9. If any note landed in `references/` → suggest running `/os-map` to refresh `OS-INDEX.md`.
+9. **Update the wiki catalog.** Add or refresh one line per new note in `wiki/index.md`, then append an `ingest` entry to `wiki/log.md` in the format `## [YYYY-MM-DD] ingest | <title>`. A page that is not in the catalog is invisible.
 
-### Mode B — Ingest one clip / one pasted source
+### Mode B: Ingest one clip / one pasted source
 
 Same pipeline for a single input (one file the user points at, or long text they paste). Distill → route → write → archive (if it was a file) → confirm one line.
 
 ## Hard rules
 
-1. **Distill, never dump.** A clip is raw source; the KB gets the *signal*. No walls of clipped HTML→MD in `references/`. (EXPANSIONS.md: interpreted facts only.)
+1. **Distill, never dump.** A clip is raw source; the KB gets the *signal*. No walls of clipped HTML in `wiki/pages/`. (EXPANSIONS.md: interpreted facts only.)
 2. **Always keep provenance.** Every distilled note carries `source:` URL + `clipped` date in frontmatter and the `> Source:` line. Web knowledge without its source is unverifiable.
-3. **Never delete raw.** Processed clips — kept or discarded — move to `archives/raw-ingest/{date}/` with `mv`. The only thing that ends empty is `Transition/RAW/`.
+3. **Never delete raw.** Processed clips, kept or discarded, move to `wiki/raw/` with `mv`. The only thing that ends empty is `Transition/RAW/`.
 4. **Dedup before create.** Merge into the existing note on a topic instead of spawning a second one. One topic = one note.
 5. **Link + tag every note (graph rule).** `[[wikilinks]]` to related notes + a `## Connected` line + `tags:` frontmatter. Never leave an ingested note orphaned.
-6. **Consistent shape.** Use the distilled-note template every time — same frontmatter keys, same sections. Consistency is the whole reason this skill exists.
+6. **Consistent shape.** Use the distilled-note template every time, same frontmatter keys, same sections. Consistency is the whole reason this skill exists.
 7. **Confirm the plan before writing** in batch mode; show DISCARDs but don't beg permission to skip obvious noise. Ask one question only when a KB home is genuinely ambiguous.
-8. **Respect EXPANSIONS.md.** Route into existing homes; don't invent `notes/`/`misc/`/`tmp/`. `archives/raw-ingest/` is the only new folder this skill creates (a dated archive bucket, not a graveyard).
+8. **Respect EXPANSIONS.md.** Route into existing homes; don't invent `notes/`, `misc/`, or `tmp/`. This skill creates no new folders: `wiki/pages/` and `wiki/raw/` both ship with the OS.
+9. **Knowledge layer only.** Everything this skill writes lands under `wiki/`, governed by `wiki/SCHEMA.md`. Never write to `tasks/`, `projects/`, `decisions/`, or `context/`. If a clip contains an action rather than a fact, say so and hand it to `capture`.
 9. **No emoji in note bodies, no hype.** Terse, substantive, in the user's voice and language.

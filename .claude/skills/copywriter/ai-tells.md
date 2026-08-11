@@ -1,4 +1,4 @@
-# AI Tells — Full Catalog
+# AI Tells, Full Catalog
 
 Reference for the `copywriter` skill. What makes writing read as AI-generated, with before/after fixes. Grounded in the Wikipedia "Signs of AI writing" catalog, ChatGPT-overused-word studies (Kobak, Juzek, Merrill), and humanizing-copy guides. Sources at the bottom.
 
@@ -9,8 +9,8 @@ The mental model: **AI writing is too balanced, too smooth, too hedged, and too 
 ## 1. Punctuation and formatting tells
 
 ### Em dash overuse (HARD BAN)
-LLMs use em dashes 2–3x the rate of human writers, usually surrounded by spaces, to fake "punched-up" sales rhythm. Even prompted to drop them, the assembled feel remains.
-- ❌ `Our system saves time — real time — the kind your team feels.`
+LLMs use em dashes 2-3x the rate of human writers, usually surrounded by spaces, to fake "punched-up" sales rhythm. Even prompted to drop them, the assembled feel remains.
+- ❌ `Our system saves time, real time, the kind your team feels.`
 - ✅ `Our system saves time. The kind your team actually feels.`
 - Fix menu: period, comma, colon, parentheses, or restructure. Never " - " as a stand-in.
 
@@ -122,9 +122,9 @@ Read the draft once for each:
 ---
 
 ## Sources
-- [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) — WikiProject AI Cleanup catalog (rule of three, copulatives, puffery, weasel words, em dash, boldface, conclusions).
-- [The Biggest Sign of AI Writing (And It's Not Em Dashes) — Medium](https://medium.com/codetodeploy/the-biggest-sign-of-ai-writing-and-its-not-em-dashes-4e034e57defb)
-- [Why is AI obsessed with the em dash? — FIU News](https://news.fiu.edu/2026/why-does-ai-use-so-many-em-dashes-an-expert-explains)
-- [Most Common ChatGPT Words to Avoid — Walter Writes](https://walterwrites.ai/most-common-chatgpt-words-to-avoid/)
-- [The most overused ChatGPT words — plusAI](https://plusai.com/blog/the-most-overused-chatgpt-words/)
-- [How to Make AI Writing Sound Human — Surfer SEO](https://surferseo.com/blog/make-ai-sound-human/)
+- [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing): WikiProject AI Cleanup catalog (rule of three, copulatives, puffery, weasel words, em dash, boldface, conclusions).
+- [The Biggest Sign of AI Writing (And It's Not Em Dashes), Medium](https://medium.com/codetodeploy/the-biggest-sign-of-ai-writing-and-its-not-em-dashes-4e034e57defb)
+- [Why is AI obsessed with the em dash?, FIU News](https://news.fiu.edu/2026/why-does-ai-use-so-many-em-dashes-an-expert-explains)
+- [Most Common ChatGPT Words to Avoid, Walter Writes](https://walterwrites.ai/most-common-chatgpt-words-to-avoid/)
+- [The most overused ChatGPT words, plusAI](https://plusai.com/blog/the-most-overused-chatgpt-words/)
+- [How to Make AI Writing Sound Human, Surfer SEO](https://surferseo.com/blog/make-ai-sound-human/)

@@ -7,23 +7,23 @@ description: Use when someone asks for an AIOS audit, asks to score their setup 
 
 Runs the **Four Cs Audit** on the current Claude Code project. Reads (never writes) the project's operating manual, memory, skills, agents, MCPs, decisions, and references. Scores each of the Four Cs out of 25. Surfaces strengths and the top 3 leverage-weighted gaps with concrete next-step commands.
 
-**Scope is structural — "is the AIOS built right?"** It is NOT a capability planner. Capability gaps ("you could build a daily brief if you connected calendar") belong to `/level-up`. The audit answers: are the files, folders, registries, and connections in good shape?
+**Scope is structural, "is the AIOS built right?"** It is NOT a capability planner. Capability gaps ("you could build a daily brief if you connected calendar") belong to `/level-up`. The audit answers: are the files, folders, registries, and connections in good shape?
 
 First run is the baseline. Re-run weekly to watch the score climb. That's the compounding hook.
 
 ## Today's context
 
-- **Date:** today's date (already in your session context — no shell call needed; works on any OS)
+- **Date:** today's date (already in your session context, no shell call needed; works on any OS)
 - **Project root:** the current working directory
 
 ## The Four Cs (scored 25 each = 100 total)
 
 | Layer | Test |
 |---|---|
-| **Context** | Knows the business — identity, team, voice, decisions, references |
-| **Connections** | Reaches the user's stuff — MCPs, integrations, data sources |
-| **Capabilities** | Knows how to do work — skills + agents |
-| **Cadence** | Runs without being asked — schedules, hooks, recurring rituals |
+| **Context** | Knows the business, identity, team, voice, decisions, references |
+| **Connections** | Reaches the user's stuff, MCPs, integrations, data sources |
+| **Capabilities** | Knows how to do work, skills + agents |
+| **Cadence** | Runs without being asked, schedules, hooks, recurring rituals |
 
 > *The Four Cs of an AIOS™ is a trademark of Nate Herk. © 2026 Nate Herk.*
 
@@ -35,8 +35,8 @@ The audit looks for **patterns and intent**, not exact paths. File names vary. U
 
 **Operating manual:** `CLAUDE.md` (root), `CLAUDE.local.md` (gitignored).
 **Memory:** `MEMORY.md` (root), `~/.claude/projects/<id>/memory/MEMORY.md`, or `memory/` folder.
-**Skills:** `.claude/skills/*/SKILL.md` — count + frontmatter.
-**Agents:** `.claude/agents/*.md` — count + frontmatter.
+**Skills:** `.claude/skills/*/SKILL.md`: count + frontmatter.
+**Agents:** `.claude/agents/*.md`: count + frontmatter.
 **Connection mechanisms** (any of these = "reachable"):
 - MCPs: `.mcp.json`, `.claude/settings.json` (mcpServers key), `.claude/settings.local.json`
 - API scripts: `scripts/*.py|.js|.ts` documented in CLAUDE.md
@@ -64,7 +64,7 @@ Don't penalize for non-canonical names if equivalent intent is captured elsewher
 | Reference docs exist | 5 | `references/`, `docs/`, or `sops/` has ≥1 file |
 | Decisions captured | 5 | `decisions/log.md` or equivalent has ≥1 entry |
 
-#### Connections (25 pts) — domain-aware, mechanism-agnostic
+#### Connections (25 pts): domain-aware, mechanism-agnostic
 
 A "reachable" connection counts via ANY mechanism: MCP, script, export pipeline, or `.env` key + `references/{tool}-api.md`. The kit is API-first; the audit doesn't prefer MCPs.
 
@@ -88,14 +88,14 @@ A "reachable" connection counts via ANY mechanism: MCP, script, export pipeline,
 | Reference guide presence | 5 | -1 per connected tool with no `references/{tool}-api.md`. Floor 0. |
 | Auth / pipeline freshness | 5 | -1 per connection in `needs-auth`/`expired` state, or script with no run within 30 days. Floor 0. |
 | Documentation in `connections.md` | 3 | 0 if missing; 1 sparse; 2 most; 3 covers all reachable. |
-| Read-AND-write balance | 2 | At least one connection can WRITE (send email, post update, etc.). 0 if all read-only — the AIOS is a viewer not an OS. |
+| Read-AND-write balance | 2 | At least one connection can WRITE (send email, post update, etc.). 0 if all read-only, the AIOS is a viewer not an OS. |
 
 #### Capabilities (25 pts)
 
 | Criterion | Points | How to detect |
 |---|---|---|
 | 3+ skills installed | 10 | Count `.claude/skills/*/SKILL.md` |
-| 1+ user-built skill | 10 | Skill names not in the shipped set: `onboard`, `audit`, `level-up`, `capture`, `os-map`, `gcal-manager`, `raw-ingest`, `frontend-design`, `grill-me`, `session-handoff`, plus Anthropic-shipped (`skill-creator`, `skill-builder`). Anything else = user-built. |
+| 1+ user-built skill | 10 | Skill names not in the shipped set: `onboard`, `audit`, `os-audit`, `level-up`, `capture`, `wiki`, `os-map`, `gcal-manager`, `raw-ingest`, `frontend-design`, `grill-me`, `session-handoff`, `tasks`, `doctor`, `get-to-know-me`, `copywriter`, `humanizer`, `house-style`, plus Anthropic-shipped (`skill-creator`, `skill-builder`). Anything else = user-built. |
 | 1+ agent defined | 5 | Count `.claude/agents/*.md` ≥ 1 |
 
 #### Cadence (25 pts)
@@ -133,7 +133,7 @@ Sort gaps by leverage descending. Take top 3. For each, write a one-line concret
 Print directly in chat (Markdown). Format:
 
 ```
-# AIOS Audit — {date}
+# AIOS Audit, {date}
 **Score: {total}/100** ({stage})
 
 Stage thresholds:

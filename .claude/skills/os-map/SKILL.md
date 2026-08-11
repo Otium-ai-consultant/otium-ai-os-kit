@@ -7,15 +7,15 @@ description: Use when you ask to map / index the AI OS, say "os-map", "map my OS
 
 Acts as the **librarian** for your AI OS. Walks the whole operating system, builds a single regenerable index of where everything lives, and reports what's drifting: stale context, a non-empty `Transition/` drop-zone, connected tools missing their `references/{tool}-api.md`, and `connections.md` rows that haven't been re-checked.
 
-**Scope is locational — "where is everything, and what's out of place?"** It is NOT a structural scorer (that's `/audit`) and NOT a capability planner (that's `/level-up`). os-map answers: *can I find everything, and is anything rotting?*
+**Scope is locational, "where is everything, and what's out of place?"** It is NOT a structural scorer (that's `/audit`) and NOT a capability planner (that's `/level-up`). os-map answers: *can I find everything, and is anything rotting?*
 
 The output is two things:
-1. A **chat report** — the tidiness scan, top cleanup actions.
-2. A regenerated **`OS-INDEX.md`** at the OS root — the living manifest. This is the "proper index" so future sessions (and you) can locate anything in one read.
+1. A **chat report**: the tidiness scan, top cleanup actions.
+2. A regenerated **`OS-INDEX.md`** at the OS root, the living manifest. This is the "proper index" so future sessions (and you) can locate anything in one read.
 
 ## Today's context
 
-- **Date:** today's date (already in your session context — no shell call needed; works on any OS)
+- **Date:** today's date (already in your session context, no shell call needed; works on any OS)
 - **OS root:** the current working directory (the folder containing `CLAUDE.md`, `context/`, `connections.md`)
 
 ## Execution
@@ -24,11 +24,11 @@ The output is two things:
 
 From the OS root, inventory (skip `.git/`, `node_modules/`, `.next/`, and OS junk like `.DS_Store` / `Thumbs.db` / `desktop.ini`):
 
-- **Top-level folders + files** — `context/`, `references/`, `decisions/`, `projects/`, `templates/`, `tasks/`, `brainstorms/`, `archives/`, `Transition/`, plus root `*.md`. (Index any extra folders an instance has grown, too.)
-- **For each `context/*.md` and `references/*.md`:** filename, one-line purpose (read the first heading / first sentence — do NOT read whole files), and last-modified date (use your file-listing tool, or `git log -1 --format=%cs -- <file>` — both work on any OS).
-- **Skills:** `.claude/skills/*/SKILL.md` — name + one-line description (frontmatter only, don't read bodies).
+- **Top-level folders + files**: `context/`, `wiki/`, `sessions/`, `references/`, `decisions/`, `projects/`, `templates/`, `tasks/`, `brainstorms/`, `archives/`, `Transition/`, plus root `*.md`. (Index any extra folders an instance has grown, too.)
+- **For each `context/*.md` and `references/*.md`:** filename, one-line purpose (read the first heading / first sentence, do NOT read whole files), and last-modified date (use your file-listing tool, or `git log -1 --format=%cs -- <file>`: both work on any OS).
+- **Skills:** `.claude/skills/*/SKILL.md`: name + one-line description (frontmatter only, don't read bodies).
 - **Agents:** `.claude/agents/*.md` if present.
-- **Connections:** parse `connections.md` — domains, mechanism, last-checked dates.
+- **Connections:** parse `connections.md`: domains, mechanism, last-checked dates.
 - **Transition/ drop-zone:** list EVERYTHING in it. This folder is supposed to be empty.
 
 Be fast. Use Glob + targeted reads (first lines only). Don't read full file bodies.
@@ -39,30 +39,30 @@ Flag each of these (only report the ones that actually trigger):
 
 | Flag | Trigger | Severity |
 |---|---|---|
-| **Drop-zone not empty** | `Transition/` has any file/folder | HIGH — route via `/capture` |
-| **Missing API guide** | A tool in `connections.md` with mechanism `mcp`/`script` has no `references/{tool}-api.md` | MED — `/audit` penalizes this |
+| **Drop-zone not empty** | `Transition/` has any file or folder other than `README.md`, `RAW/`, and `.gitkeep` | HIGH, route via `/capture` |
+| **Missing API guide** | A tool in `connections.md` with mechanism `mcp`/`script` has no `references/{tool}-api.md` | MED, `/audit` penalizes this |
 | **Stale connection** | A `connections.md` row whose last-checked is blank or >30 days old | MED |
-| **Stale context** | A `context/*.md` not modified in >90 days | LOW — may just be evergreen; flag, don't nag |
+| **Stale context** | A `context/*.md` not modified in >90 days | LOW, may just be evergreen; flag, don't nag |
 | **Orphan / misfiled** | A file whose location contradicts EXPANSIONS.md rules (e.g. a `notes/`, `tmp/`, `inbox/`, `misc/` folder; a doc dump in `references/`) | MED |
-| **Empty placeholder** | A folder with only `.gitkeep` and nothing else | INFO — fine, just note it |
+| **Empty placeholder** | A folder with only `.gitkeep` and nothing else | INFO, fine, just note it |
 
-Cross-check folder hygiene against `EXPANSIONS.md` "What NOT to add". Don't invent rules — that file is the source of truth.
+Cross-check folder hygiene against `EXPANSIONS.md` "What NOT to add". Don't invent rules, that file is the source of truth.
 
 ### Step 3: Regenerate OS-INDEX.md
 
-Write `OS-INDEX.md` at the OS root. Overwrite it fully each run (it's generated, not hand-edited). **This file is the Obsidian graph hub — the Path column uses `[[wikilinks]]` so every note connects in the graph view. Preserve that format on every regeneration.**
+Write `OS-INDEX.md` at the OS root. Overwrite it fully each run (it's generated, not hand-edited). **This file is the Obsidian graph hub, the Path column uses `[[wikilinks]]` so every note connects in the graph view. Preserve that format on every regeneration.**
 
 Wikilink rules for the Path column:
 - For notes in subfolders use the folder-qualified form **with no alias** (no `|`, so it stays table-safe): `[[context/about-me]]`, `[[references/voice]]`, `[[decisions/log]]`, `[[projects/example-client]]`.
 - For unique root notes use the basename: `[[CLAUDE]]`, `[[EXPANSIONS]]`, `[[connections]]`, `[[aios-intake]]`.
 - For ambiguous basenames (multiple `README.md`) keep plain text or folder-qualified (`[[projects/README]]`).
-- Only wikilink notes that actually exist on disk — don't link a file you haven't confirmed (ghost nodes clutter the graph). Folders stay plain text.
+- Only wikilink notes that actually exist on disk, don't link a file you haven't confirmed (ghost nodes clutter the graph). Folders stay plain text.
 
 Structure:
 
 ```
-# OS-INDEX — auto-generated by /os-map on {date}
-> Regenerate with `/os-map`. Paths are `[[wikilinks]]` on purpose — this file is the graph hub that connects every note in Obsidian.
+# OS-INDEX: auto-generated by /os-map on {date}
+> Regenerate with `/os-map`. Paths are `[[wikilinks]]` on purpose, this file is the graph hub that connects every note in Obsidian.
 
 ## Map
 | Path | Purpose | Last touched |
@@ -82,17 +82,17 @@ Structure:
 | ... | ... | ... | ... |
 
 ## Open flags ({n})
-- {severity} — {flag} — {suggested fix}
+- {severity}, {flag}, {suggested fix}
 ```
 
 Keep the map flat and scannable. One row per meaningful file. Group `context/`, `references/`, `decisions/`, `templates/` under sub-sections if the list gets long.
 
 ### Step 4: Report in chat
 
-Print a short tidiness report (NOT the whole index — the index is in the file):
+Print a short tidiness report (NOT the whole index, the index is in the file):
 
 ```
-# OS Map — {date}
+# OS Map, {date}
 
 **Files indexed:** {n}  ·  **Skills:** {n}  ·  **Connections:** {n}  ·  **Flags:** {n}
 **Index written:** OS-INDEX.md
@@ -107,12 +107,12 @@ Print a short tidiness report (NOT the whole index — the index is in the file)
 
 If `Transition/` is not empty, the #1 suggested next is always: *"Run `/capture` to file {item} into the right place and empty the drop-zone."*
 
-If zero flags: say so plainly — "OS is tidy. {n} files indexed, nothing stale, drop-zone empty." Don't manufacture problems.
+If zero flags: say so plainly, "OS is tidy. {n} files indexed, nothing stale, drop-zone empty." Don't manufacture problems.
 
 ## Hard rules
 
 1. **Read-only except `OS-INDEX.md`.** Never modify context, references, decisions, skills, or connections. The only write is the regenerated index at the root.
-2. **Don't read whole files.** First heading / first line / frontmatter only. Speed matters — finish in under 60s.
+2. **Don't read whole files.** First heading / first line / frontmatter only. Speed matters, finish in under 60s.
 3. **Don't move or delete anything.** Detection only. Fixes are `/capture`'s job (drop-zone) or the user's call (everything else). Surface, don't act.
 4. **EXPANSIONS.md is the hygiene law.** Judge folder structure against it, not your own preferences.
 5. **Be honest, not alarmist.** Evergreen context being old is fine. A real drop-zone backlog is not. Sort by actual severity.

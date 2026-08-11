@@ -1,6 +1,6 @@
 {
-  "_comment": "Field definitions + tiers for house-style. The live data lives in ~/.claude-os/brand.json under profiles[active_profile]. Tier A = blocking (no document without it), B = warning (runs but flags a gap), C = on-demand (asked only when a format needs it).",
-  "store_path": "~/.claude-os/brand.json",
+  "_comment": "Field definitions + tiers for house-style. The live data lives in context/brand.json under profiles[active_profile]. Tier A = blocking (no document without it), B = warning (runs but flags a gap), C = on-demand (asked only when a format needs it).",
+  "store_path": "context/brand.json",
   "status_levels": ["empty", "partial", "ready", "complete"],
   "ready_requires": "all Tier A fields present",
   "complete_requires": "all Tier A and Tier B fields present",
