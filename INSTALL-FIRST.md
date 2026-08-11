@@ -41,7 +41,7 @@ folder somewhere you will find it again, such as **Documents**. Give it a name y
 
 **Or clone it**, if you already use Git or VS Code:
 ```
-git clone https://github.com/Otium-ai-consultant/otium-ai-os-kit.git
+git clone https://github.com/Otium-ai-consultant/otium-ai-os-claude-code.git
 ```
 
 ## 3. Node.js, a helper the plugins need
